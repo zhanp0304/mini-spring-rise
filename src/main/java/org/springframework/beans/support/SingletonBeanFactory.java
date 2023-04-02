@@ -1,7 +1,7 @@
 package org.springframework.beans.support;
 
 import org.springframework.beans.definition.BeanDefinition;
-import org.springframework.beans.definition.BeanDefinitionRegister;
+import org.springframework.beans.definition.BeanDefinitionRegistry;
 import org.springframework.beans.factory.AbstractBeanFactory;
 
 import java.text.MessageFormat;
@@ -17,10 +17,10 @@ public abstract class SingletonBeanFactory extends AbstractBeanFactory implement
 
     private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
-    private final BeanDefinitionRegister beanDefinitionRegister;
+    private final BeanDefinitionRegistry beanDefinitionRegistry;
 
-    protected SingletonBeanFactory(BeanDefinitionRegister beanDefinitionRegister) {
-        this.beanDefinitionRegister = beanDefinitionRegister;
+    protected SingletonBeanFactory(BeanDefinitionRegistry beanDefinitionRegistry) {
+        this.beanDefinitionRegistry = beanDefinitionRegistry;
     }
 
     @Override
@@ -34,7 +34,7 @@ public abstract class SingletonBeanFactory extends AbstractBeanFactory implement
 
     @Override
     protected BeanDefinition getBeanDefinition(String beanName) {
-        return beanDefinitionRegister.getBeanDefinition(beanName);
+        return beanDefinitionRegistry.getBeanDefinition(beanName);
     }
 
     @Override

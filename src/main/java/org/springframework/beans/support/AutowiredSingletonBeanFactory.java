@@ -1,7 +1,7 @@
 package org.springframework.beans.support;
 
 import org.springframework.beans.definition.BeanDefinition;
-import org.springframework.beans.definition.BeanDefinitionRegister;
+import org.springframework.beans.definition.BeanDefinitionRegistry;
 
 import java.text.MessageFormat;
 
@@ -12,8 +12,8 @@ import java.text.MessageFormat;
  */
 public class AutowiredSingletonBeanFactory extends SingletonBeanFactory {
 
-    public AutowiredSingletonBeanFactory(BeanDefinitionRegister beanDefinitionRegister) {
-        super(beanDefinitionRegister);
+    public AutowiredSingletonBeanFactory(BeanDefinitionRegistry beanDefinitionRegistry) {
+        super(beanDefinitionRegistry);
     }
 
     @Override

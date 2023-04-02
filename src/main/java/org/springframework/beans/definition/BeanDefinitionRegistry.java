@@ -6,7 +6,7 @@ package org.springframework.beans.definition;
  *
  * @author zhanpeng.jiang@hand-china.com 2023/4/2
  */
-public interface BeanDefinitionRegister {
+public interface BeanDefinitionRegistry {
     /**
      * register beanDefinition into the DefinitionRegister (almost the BeanDefinitionMap)
      *

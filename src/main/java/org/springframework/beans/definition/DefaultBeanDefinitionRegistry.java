@@ -11,9 +11,9 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author zhanpeng.jiang@hand-china.com 2023/4/2
  */
-public class DefaultBeanDefinitionRegister implements BeanDefinitionRegister {
+public class DefaultBeanDefinitionRegistry implements BeanDefinitionRegistry {
 
-    private final Logger log = LoggerFactory.getLogger(DefaultBeanDefinitionRegister.class);
+    private final Logger log = LoggerFactory.getLogger(DefaultBeanDefinitionRegistry.class);
 
     private final Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>(256);
 
