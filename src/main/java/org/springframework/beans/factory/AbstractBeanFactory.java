@@ -24,7 +24,7 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         if (beanDefinition == null) {
             throw new IllegalArgumentException(MessageFormat.format("the beanDefinition named[{0}] not exists", beanName));
         }
-        return doCreateBean(beanName);
+        return doCreateBean(beanName, beanDefinition);
     }
 
     protected abstract BeanDefinition getBeanDefinition(String beanName);
@@ -40,9 +40,10 @@ public abstract class AbstractBeanFactory implements BeanFactory {
     /**
      * create bean Instance which named with beanName
      *
-     * @param beanName beanName
+     * @param beanName       beanName
+     * @param beanDefinition beanDefinition
      * @return bean Instance
      */
-    protected abstract Object doCreateBean(String beanName);
+    protected abstract Object doCreateBean(String beanName, BeanDefinition beanDefinition);
 
 }

@@ -42,8 +42,15 @@ public abstract class SingletonBeanFactory extends AbstractBeanFactory implement
         return singletonObjects.get(beanName);
     }
 
+    /**
+     * Create Bean instance And register it into the bean container
+     *
+     * @param beanName       beanName
+     * @param beanDefinition beanDefinition
+     * @return bean instance
+     */
     @Override
-    protected abstract Object doCreateBean(String beanName);
+    protected abstract Object doCreateBean(String beanName, BeanDefinition beanDefinition);
 
     @Override
     public void singletonBeanRegister(String beanName, Object beanInstance) {
