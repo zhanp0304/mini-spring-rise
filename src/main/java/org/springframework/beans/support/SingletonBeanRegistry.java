@@ -5,7 +5,7 @@ package org.springframework.beans.support;
  *
  * @author zhanpeng.jiang@hand-china.com 2023/4/2
  */
-public interface SingletonBeanRegistry extends BeanRegister {
+public interface SingletonBeanRegistry extends BeanRegistry {
     /**
      * register the beanName into the singleton bean instance container
      *

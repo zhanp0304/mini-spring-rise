@@ -7,7 +7,7 @@ import org.springframework.beans.definition.DefaultBeanDefinitionRegister;
 import org.springframework.beans.support.AutowiredSingletonBeanFactory;
 
 /**
- * Description
+ * BeanFactoryTest
  *
  * @author zhanpeng.jiang@hand-china.com 2023/4/2
  */

@@ -10,7 +10,7 @@ import java.text.MessageFormat;
  *
  * @author zhanpeng.jiang@hand-china.com 2023/4/2
  */
-public class AutowiredSingletonBeanFactory extends SingletonBeanRegister {
+public class AutowiredSingletonBeanFactory extends SingletonBeanFactory {
 
     public AutowiredSingletonBeanFactory(BeanDefinitionRegister beanDefinitionRegister) {
         super(beanDefinitionRegister);

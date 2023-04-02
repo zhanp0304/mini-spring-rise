@@ -13,13 +13,13 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author zhanpeng.jiang@hand-china.com 2023/4/2
  */
-public abstract class SingletonBeanRegister extends AbstractBeanFactory implements SingletonBeanRegistry {
+public abstract class SingletonBeanFactory extends AbstractBeanFactory implements SingletonBeanRegistry {
 
     private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
     private final BeanDefinitionRegister beanDefinitionRegister;
 
-    protected SingletonBeanRegister(BeanDefinitionRegister beanDefinitionRegister) {
+    protected SingletonBeanFactory(BeanDefinitionRegister beanDefinitionRegister) {
         this.beanDefinitionRegister = beanDefinitionRegister;
     }
 

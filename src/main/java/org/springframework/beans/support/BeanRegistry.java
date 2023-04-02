@@ -5,7 +5,7 @@ package org.springframework.beans.support;
  *
  * @author zhanpeng.jiang@hand-china.com 2023/4/2
  */
-public interface BeanRegister {
+public interface BeanRegistry {
 
     /**
      * register the beanName into the bean instance container
