@@ -4,7 +4,8 @@ import org.junit.Test;
 import org.rise.verifier.StockBatchVerifier;
 import org.springframework.beans.definition.BeanDefinition;
 import org.springframework.beans.definition.DefaultBeanDefinitionRegistry;
-import org.springframework.beans.support.AutowiredSingletonBeanFactory;
+import org.springframework.beans.support.AutowireCapableBeanFactory;
+import org.springframework.beans.support.DefaultSingleBeanRegistry;
 
 /**
  * BeanFactoryTest
@@ -20,7 +21,9 @@ public class BeanFactoryTest {
         BeanDefinition definition = new BeanDefinition(StockBatchVerifier.class);
         beanDefinitionRegister.registerBeanDefinition(beanName, definition);
 
-        AutowiredSingletonBeanFactory beanFactory = new AutowiredSingletonBeanFactory(beanDefinitionRegister);
+        DefaultSingleBeanRegistry beanRegistry = new DefaultSingleBeanRegistry();
+
+        AutowireCapableBeanFactory beanFactory = new AutowireCapableBeanFactory(beanRegistry, beanDefinitionRegister);
         StockBatchVerifier verifier = (StockBatchVerifier) beanFactory.getBean(beanName);
         verifier.verify();
     }

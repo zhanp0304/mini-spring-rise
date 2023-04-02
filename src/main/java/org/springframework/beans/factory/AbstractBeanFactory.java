@@ -1,6 +1,7 @@
 package org.springframework.beans.factory;
 
 import org.springframework.beans.definition.BeanDefinition;
+import org.springframework.beans.support.SingletonBeanRegistry;
 
 import java.text.MessageFormat;
 
@@ -12,10 +13,15 @@ import java.text.MessageFormat;
  */
 public abstract class AbstractBeanFactory implements BeanFactory {
 
+    private final SingletonBeanRegistry singletonBeanRegistry;
+
+    protected AbstractBeanFactory(SingletonBeanRegistry singletonBeanRegistry) {
+        this.singletonBeanRegistry = singletonBeanRegistry;
+    }
 
     @Override
     public Object getBean(String beanName) {
-        Object beanInstance = getBeanInstance(beanName);
+        Object beanInstance = singletonBeanRegistry.getSingletonBean(beanName);
         if (beanInstance != null) {
             return beanInstance;
         }
@@ -24,18 +30,12 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         if (beanDefinition == null) {
             throw new IllegalArgumentException(MessageFormat.format("the beanDefinition named[{0}] not exists", beanName));
         }
-        return doCreateBean(beanName, beanDefinition);
+        beanInstance = doCreateBean(beanName, beanDefinition);
+        singletonBeanRegistry.registerSingletonBean(beanName, beanInstance);
+        return beanInstance;
     }
 
     protected abstract BeanDefinition getBeanDefinition(String beanName);
-
-    /**
-     * require bean instance from the beanDefinitionMap
-     *
-     * @param beanName beanName
-     * @return bean instance
-     */
-    protected abstract Object getBeanInstance(String beanName);
 
     /**
      * create bean Instance which named with beanName
