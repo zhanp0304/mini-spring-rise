@@ -27,7 +27,7 @@ public abstract class AbstractBeanFactory implements BeanFactory {
         return doCreateBean(beanName);
     }
 
-    public abstract BeanDefinition getBeanDefinition(String beanName);
+    protected abstract BeanDefinition getBeanDefinition(String beanName);
 
     /**
      * require bean instance from the beanDefinitionMap
@@ -35,7 +35,7 @@ public abstract class AbstractBeanFactory implements BeanFactory {
      * @param beanName beanName
      * @return bean instance
      */
-    public abstract Object getBeanInstance(String beanName);
+    protected abstract Object getBeanInstance(String beanName);
 
     /**
      * create bean Instance which named with beanName
@@ -43,6 +43,6 @@ public abstract class AbstractBeanFactory implements BeanFactory {
      * @param beanName beanName
      * @return bean Instance
      */
-    public abstract Object doCreateBean(String beanName);
+    protected abstract Object doCreateBean(String beanName);
 
 }

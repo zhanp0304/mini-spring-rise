@@ -17,7 +17,7 @@ public class AutowiredSingletonBeanFactory extends SingletonBeanRegister {
     }
 
     @Override
-    public Object doCreateBean(String beanName) {
+    protected Object doCreateBean(String beanName) {
         BeanDefinition beanDefinition = getBeanDefinition(beanName);
         Class originalClazz = beanDefinition.getOriginalClazz();
         try {

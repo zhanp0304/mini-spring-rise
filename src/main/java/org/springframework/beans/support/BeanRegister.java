@@ -13,5 +13,5 @@ public interface BeanRegister {
      * @param beanName     beanName
      * @param beanInstance bean
      */
-    void beanRegister(String beanName, Object beanInstance);
+    void registerBean(String beanName, Object beanInstance);
 }

@@ -13,18 +13,18 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author zhanpeng.jiang@hand-china.com 2023/4/2
  */
-public class SingletonBeanRegister extends AbstractBeanFactory implements SingletonBeanRegistry {
+public abstract class SingletonBeanRegister extends AbstractBeanFactory implements SingletonBeanRegistry {
 
     private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
 
     private final BeanDefinitionRegister beanDefinitionRegister;
 
-    public SingletonBeanRegister(BeanDefinitionRegister beanDefinitionRegister) {
+    protected SingletonBeanRegister(BeanDefinitionRegister beanDefinitionRegister) {
         this.beanDefinitionRegister = beanDefinitionRegister;
     }
 
     @Override
-    public void beanRegister(String beanName, Object beanInstance) {
+    public void registerBean(String beanName, Object beanInstance) {
         if (singletonObjects.containsKey(beanName)) {
             throw new IllegalArgumentException(MessageFormat.format("the bean named with [{0}] has already exists", beanName));
         }
@@ -33,19 +33,17 @@ public class SingletonBeanRegister extends AbstractBeanFactory implements Single
     }
 
     @Override
-    public BeanDefinition getBeanDefinition(String beanName) {
+    protected BeanDefinition getBeanDefinition(String beanName) {
         return beanDefinitionRegister.getBeanDefinition(beanName);
     }
 
     @Override
-    public Object getBeanInstance(String beanName) {
+    protected Object getBeanInstance(String beanName) {
         return singletonObjects.get(beanName);
     }
 
     @Override
-    public Object doCreateBean(String beanName) {
-        throw new UnsupportedOperationException();
-    }
+    protected abstract Object doCreateBean(String beanName);
 
     @Override
     public void singletonBeanRegister(String beanName, Object beanInstance) {
