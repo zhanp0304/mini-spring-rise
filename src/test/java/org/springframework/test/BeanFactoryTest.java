@@ -17,13 +17,13 @@ public class BeanFactoryTest {
     @Test
     public void testGetBean() {
         String beanName = "stockVerifier";
-        DefaultBeanDefinitionRegistry beanDefinitionRegister = new DefaultBeanDefinitionRegistry();
+        DefaultBeanDefinitionRegistry beanDefinitionRegistry = new DefaultBeanDefinitionRegistry();
         BeanDefinition definition = new BeanDefinition(StockBatchVerifier.class);
-        beanDefinitionRegister.registerBeanDefinition(beanName, definition);
+        beanDefinitionRegistry.registerBeanDefinition(beanName, definition);
 
         DefaultSingleBeanRegistry beanRegistry = new DefaultSingleBeanRegistry();
 
-        AutowireCapableBeanFactory beanFactory = new AutowireCapableBeanFactory(beanRegistry, beanDefinitionRegister);
+        AutowireCapableBeanFactory beanFactory = new AutowireCapableBeanFactory(beanRegistry, beanDefinitionRegistry);
         StockBatchVerifier verifier = (StockBatchVerifier) beanFactory.getBean(beanName);
         verifier.verify();
     }
