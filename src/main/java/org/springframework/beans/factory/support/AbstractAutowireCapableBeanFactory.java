@@ -35,20 +35,35 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
         return bean;
     }
 
-    @SuppressWarnings("all")
     private void populateBean(Object bean, BeanDefinition beanDefinition) {
         Assert.notNull(beanDefinition, "beanDefinition cannot be null");
         PropertyValues propertyValues = beanDefinition.getPropertyValues();
         try {
-            for (PropertyValues.PropertyValue value : propertyValues.getValues()) {
-                Field field = bean.getClass().getDeclaredField(value.getPropertyName());
-                field.setAccessible(true);
-                field.set(bean, value.getValue());
+            for (PropertyValues.PropertyValue pv : propertyValues.getValues()) {
+                if (pv.getValue() instanceof BeanReference) {
+                    processWithBeanReference(bean, pv.getPropertyName(), (BeanReference) pv.getValue());
+                    continue;
+                }
+
+                applyPropertyValue(bean, pv.getPropertyName(), pv.getValue());
             }
         } catch (NoSuchFieldException e) {
             throw new IllegalStateException("propertyName not match with the original Bean", e);
         } catch (IllegalAccessException e) {
             throw new IllegalStateException("no access permission", e);
         }
+    }
+
+    private void processWithBeanReference(Object bean, String propertyName, BeanReference beanReference) throws NoSuchFieldException, IllegalAccessException {
+        String beanName = beanReference.getBeanName();
+        Object memberBean = getBean(beanName);
+        applyPropertyValue(bean, propertyName, memberBean);
+    }
+
+    @SuppressWarnings("all")
+    private void applyPropertyValue(Object bean, String propertyName, Object propertyValue) throws NoSuchFieldException, IllegalAccessException {
+        Field field = bean.getClass().getDeclaredField(propertyName);
+        field.setAccessible(true);
+        field.set(bean, propertyValue);
     }
 }

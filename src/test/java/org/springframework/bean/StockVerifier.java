@@ -1,4 +1,4 @@
-package org.springframework.test;
+package org.springframework.bean;
 
 import java.text.MessageFormat;
 
