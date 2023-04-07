@@ -1,9 +1,9 @@
 package org.springframework.core.io;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 import org.springframework.util.Assert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,9 +17,16 @@ public class ResourceTransformerChain implements ResourceTransformer {
     private final List<ResourceTransformer> transformers;
 
     public ResourceTransformerChain(List<ResourceTransformer> transformers) {
-
         Assert.notNull(transformers, "transformers cannot be null");
         this.transformers = transformers;
+    }
+
+    public static ResourceTransformerChain initBuild() {
+        List<ResourceTransformer> transformers = new ArrayList<>();
+        transformers.add(new FileSystemResourceTransformer());
+        transformers.add(new ClassPathResourceTransformer());
+        transformers.add(new UrlResourceTransformer());
+        return new ResourceTransformerChain(transformers);
     }
 
     /**
