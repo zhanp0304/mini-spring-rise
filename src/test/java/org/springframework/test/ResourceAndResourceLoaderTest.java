@@ -1,17 +1,15 @@
 package org.springframework.test;
 
+import cn.hutool.core.io.IoUtil;
 import org.junit.Test;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.*;
 
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import cn.hutool.core.io.IoUtil;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
