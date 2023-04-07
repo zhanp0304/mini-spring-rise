@@ -1,9 +1,8 @@
 package org.springframework.beans.factory.support;
 
+import lombok.extern.slf4j.Slf4j;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanDefinition;
 
@@ -12,8 +11,8 @@ import org.springframework.beans.factory.config.BeanDefinition;
  *
  * @author zhanpeng.jiang@hand-china.com 2023/4/6
  */
+@Slf4j
 public class CglibSubclassingInstantiationStrategy implements InstantiationStrategy {
-    private final Logger log = LoggerFactory.getLogger(CglibSubclassingInstantiationStrategy.class);
 
     @Override
     public Object instantiate(String beanName, BeanDefinition beanDefinition) throws BeansException {
